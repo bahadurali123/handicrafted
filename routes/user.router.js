@@ -1,16 +1,9 @@
 import express from "express";
 import uploadOnMulter from "../middleware/multer.middleware.js";
-import { fedexNumberTrack, fedexMultipleTrack, fedexRate, fedexShipment } from "../controllers/fedex.sample.js";
 import { SignIn, SignUp, googleRedirect, googleCalback, veirfyOTP, regenreteOTP, resetPassword, UpdateProfile, AddShipping, AddComment, AddLike, AddWishlist, GetBlog, GetAllBlogs, CheckOauth, UserShippings, AllLikes, AllReviews, AllComments, findFedexRate, createPaypalOrder, capturePaypalOrder, stripeCheckout, stripeWebhook, AddMessage, userOrders, orderShippingTracking, AddReview, DeleteShipping, EditShippingAddressStatus, UpdateShipping, facebookRedirect, facebookCalback, SignOut } from "../controllers/index.controller.js"
 import { UserAuth, UserFlexibleAuth } from "../middleware/auth.middleware.js";
 
 const UserRouter = express.Router();
-// // sample shipping
-// UserRouter.post('/ship', fedexShipment);
-// UserRouter.get('/number/track', fedexNumberTrack);
-// UserRouter.post('/multiple/track', fedexMultipleTrack);
-// UserRouter.post('/rate/track', fedexRate);
-
 
 // Real routes
 UserRouter.get('/fedex/rates/:productId', UserFlexibleAuth, findFedexRate);
