@@ -25,8 +25,10 @@ const Checkout = async (cart) => {
         payment_intent_data: {
             capture_method: 'automatic', // Ensures payment is captured automatically
         },
-        success_url: `${Configuration.FrontendUrl}/order/success`,
-        cancel_url: `${Configuration.FrontendUrl}/order/cancel`,
+        // success_url: `${Configuration.FrontendUrl}/order/success`,
+        // cancel_url: `${Configuration.FrontendUrl}/order/cancel`,
+        success_url: `${process.env.FRONTEND_REACT_URL}/order/success`,
+        cancel_url: `${process.env.FRONTEND_REACT_URL}/order/cancel`,
     });
 
     return session;

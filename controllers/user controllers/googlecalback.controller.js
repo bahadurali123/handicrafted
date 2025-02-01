@@ -49,7 +49,8 @@ const googleCalback = async (req, res) => {
 
             res.status(200)
                 .cookie("handcrafted", accessToken, options)
-                .redirect(`${Configuration.FrontendUrl}`)
+                // .redirect(`${Configuration.FrontendUrl}`)
+                .redirect(`${process.env.FRONTEND_REACT_URL}`)
         } else {
             const newUser = new User({
                 googleId,
@@ -70,7 +71,8 @@ const googleCalback = async (req, res) => {
 
             res.status(200)
                 .cookie("handcrafted", accessToken, options)
-                .redirect(`${Configuration.FrontendUrl}`)
+                // .redirect(`${Configuration.FrontendUrl}`)
+                .redirect(`${process.env.FRONTEND_REACT_URL}`)
         }
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });

@@ -1,7 +1,8 @@
 import mongoose from "mongoose";
 import { Configuration } from "./env.config.js";
 
-const URI = Configuration.DBUri;
+const URI = process.env.URI;
+// const URI = Configuration.DBUri;
 const connection = mongoose.connect(URI)
 .then(() => {
     console.log("DB connection of Handcrafted  is successful.");

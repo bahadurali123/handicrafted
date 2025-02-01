@@ -5,11 +5,14 @@ const app = express();
 import UserRouter from './routes/user.router.js';
 import AdminRouter from './routes/admin.router.js';
 import { Configuration } from './config/env.config.js';
+import dotenv from 'dotenv';
+dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser()); //its handle the cookies
 app.use(cors({
-    origin: Configuration.FrontendUrl,
+    // origin: Configuration.FrontendUrl,
+    origin: process.env.FRONTEND_REACT_URL,
     credentials: true, // Allow credentials (cookies) to be sent
 }));
 

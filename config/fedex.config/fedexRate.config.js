@@ -3,7 +3,8 @@ import { Configuration } from "../env.config.js";
 const findRate = async (accessToken, rateData) => {
     try {
         console.log("FedEx Rate!");
-        const url = `${Configuration.fedexBaseUrl}/rate/v1/rates/quotes`;
+        // const url = `${Configuration.fedexBaseUrl}/rate/v1/rates/quotes`;
+        const url = `${process.env.FEDEX_TEST_URL}/rate/v1/rates/quotes`;
 
         const response = await fetch(url, {
             method: 'POST',

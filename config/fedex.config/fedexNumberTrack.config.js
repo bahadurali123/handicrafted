@@ -2,7 +2,8 @@ import { Configuration } from "../env.config.js";
 
 const createNumberTracking = async (accessToken, trackingData) => {
     try {
-        const url = `${Configuration.fedexBaseUrl}/track/v1/trackingnumbers`;
+        // const url = `${Configuration.fedexBaseUrl}/track/v1/trackingnumbers`;
+        const url = `${process.env.FEDEX_TEST_URL}/track/v1/trackingnumbers`;
 
         const response = await fetch(url, {
             method: 'POST',
