@@ -38,7 +38,8 @@ const SignIn = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "None", // Allows cross-site cookies
-            // domain: `${Configuration.FrontendUrl}`, // Set the specific domain
+            domain: ".hand-crafted.vercel.app", // Set the specific domain
+            path: "/", // Ensure it's accessible across the site
         };
 
         const { password, verificationCode, ...responseData } = existingUser.toObject();
