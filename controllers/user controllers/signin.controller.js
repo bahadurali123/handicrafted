@@ -38,7 +38,7 @@ const SignIn = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "None", // Allows cross-site cookies
-            domain: `${Configuration.FrontendUrl}`, // Set the specific domain
+            // domain: `${Configuration.FrontendUrl}`, // Set the specific domain
         };
 
         const { password, verificationCode, ...responseData } = existingUser.toObject();
