@@ -45,12 +45,13 @@ const googleCalback = async (req, res) => {
             const options = {
                 httpOnly: true,
                 secure: true,
+                sameSite: "None", // Allows cross-site cookies
+                domain: `${Configuration.FrontendUrl}`, // Set the specific domain
             };
 
             res.status(200)
                 .cookie("handcrafted", accessToken, options)
-                // .redirect(`${Configuration.FrontendUrl}`)
-                .redirect(`${process.env.FRONTEND_REACT_URL}`)
+                .redirect(`${Configuration.FrontendUrl}`)
         } else {
             const newUser = new User({
                 googleId,
@@ -67,12 +68,13 @@ const googleCalback = async (req, res) => {
             const options = {
                 httpOnly: true,
                 secure: true,
+                sameSite: "None", // Allows cross-site cookies
+                domain: `${Configuration.FrontendUrl}`, // Set the specific domain
             };
 
             res.status(200)
                 .cookie("handcrafted", accessToken, options)
-                // .redirect(`${Configuration.FrontendUrl}`)
-                .redirect(`${process.env.FRONTEND_REACT_URL}`)
+                .redirect(`${Configuration.FrontendUrl}`)
         }
     } catch (error) {
         res.status(500).json({ message: "Something went wrong" });

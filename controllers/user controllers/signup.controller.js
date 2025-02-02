@@ -3,6 +3,7 @@ import { UserValidator } from "../../validation/inputs.validation.js";
 import { genneraeOTP } from "../../middleware/generateotp.middleware.js";
 import sendEmail from "../../middleware/mail.middleware.js";
 import generateTokens from "../../middleware/generateToken.middleware.js";
+import { Configuration } from "../../config/env.config.js";
 
 const SignUp = async (req, res) => {
   console.log("SignUp", req.body);
@@ -51,6 +52,8 @@ const SignUp = async (req, res) => {
     const options = {
       httpOnly: true,
       secure: true,
+      sameSite: "None", // Allows cross-site cookies
+      domain: `${Configuration.FrontendUrl}`, // Set the specific domain
     };
 
     const { password, verificationCode, token, ...responseData } = savedUser.toObject();

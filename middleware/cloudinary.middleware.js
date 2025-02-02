@@ -11,7 +11,7 @@ cloudinary.config({
     cloud_name: Configuration.cloudinaryName,
     api_key: Configuration.cloudinaryKey,
     api_secret: Configuration.cloudinarySecret,
-    // secure: true // Return "https" URLs by setting secure: true
+    secure: true // Return "https" URLs by setting secure: true
 });
 
 // ................................

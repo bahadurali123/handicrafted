@@ -2,8 +2,7 @@ import { Configuration } from "../env.config.js";
 
 const createMultiTracking = async (accessToken, trackingData) => {
     try {
-        // const url = `${Configuration.fedexBaseUrl}/track/v1/associatedshipments`;
-        const url = `${process.env.FEDEX_TEST_URL}/track/v1/associatedshipments`;
+        const url = `${Configuration.fedexBaseUrl}/track/v1/associatedshipments`;
 
         const response = await fetch(url, {
             method: 'POST',

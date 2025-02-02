@@ -2,8 +2,7 @@ import { Configuration } from "../env.config.js";
 
 const createShipment = async (accessToken, shipmentData) => {
     try {
-        // const url = `${Configuration.fedexBaseUrl}/ship/v1/shipments`;
-        const url = `${process.env.FEDEX_TEST_URL}/ship/v1/shipments`;
+        const url = `${Configuration.fedexBaseUrl}/ship/v1/shipments`;
 
         const response = await fetch(url, {
             method: 'POST',

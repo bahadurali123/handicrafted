@@ -2,6 +2,7 @@ import User from "../../models/user.model.js";
 import { UserValidator } from "../../validation/inputs.validation.js";
 import generateTokens from "../../middleware/generateToken.middleware.js";
 import bcrypt from "bcrypt";
+import { Configuration } from "../../config/env.config.js";
 
 const SignIn = async (req, res) => {
     try {
@@ -36,6 +37,8 @@ const SignIn = async (req, res) => {
         const options = {
             httpOnly: true,
             secure: true,
+            sameSite: "None", // Allows cross-site cookies
+            domain: `${Configuration.FrontendUrl}`, // Set the specific domain
         };
 
         const { password, verificationCode, ...responseData } = existingUser.toObject();

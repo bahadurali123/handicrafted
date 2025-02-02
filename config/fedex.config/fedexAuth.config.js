@@ -2,8 +2,7 @@ import { Configuration } from "../env.config.js";
 
 const fedexOAuth = async (apiKey, secretKey) => {
     console.log("FedEx Auth!");
-    // const url = `${Configuration.fedexBaseUrl}/oauth/token`;
-    const url = `${process.env.FEDEX_TEST_URL}/oauth/token`;
+    const url = `${Configuration.fedexBaseUrl}/oauth/token`;
     console.log("FedEx Auth! 1", url);
 
     // Encode the credentials using Base64
