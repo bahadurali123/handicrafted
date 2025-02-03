@@ -14,7 +14,6 @@ app.use(cors({
     origin: Configuration.FrontendUrl,
     credentials: true, // Allow credentials (cookies) to be sent
 }));
-app.options("*", cors()); // Enable CORS for preflight requests
 
 app.use('/', UserRouter, AdminRouter);
 
