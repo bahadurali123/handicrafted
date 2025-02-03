@@ -36,9 +36,9 @@ const SignIn = async (req, res) => {
 
         const options = {
             httpOnly: true,
-            secure: true,
+            // secure: true,
             // sameSite: "None", // Allows cross-site cookies
-            domain: ".hand-crafted.vercel.app", // Set the specific domain
+            // domain: ".hand-crafted.vercel.app", // Set the specific domain
             // path: "/", // Ensure it's accessible across the site
         };
 
