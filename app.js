@@ -11,7 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser()); //its handle the cookies
 app.use(cors({
-    origin: Configuration.FrontendUrl,
+    origin: [Configuration.FrontendUrl, Configuration.FrontendDomain],
     credentials: true, // Allow credentials (cookies) to be sent
 }));
 

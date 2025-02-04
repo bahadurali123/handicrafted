@@ -5,6 +5,7 @@ const Configuration = {
     PORT: process.env.PORT,
     DBUri: process.env.URI,
     FrontendUrl: process.env.FRONTEND_REACT_URL,
+    FrontendDomain: process.env.FRONTEND_REACT_DOMAIN,
     fedexBaseUrl: process.env.FEDEX_TEST_URL,
     fedexTrackKey: process.env.FEDEX_TRACK_API_KEY,
     fedexTrackSecret: process.env.FEDEX_TRACK_SECRET_KEY,
