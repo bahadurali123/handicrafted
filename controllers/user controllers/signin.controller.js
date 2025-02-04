@@ -36,6 +36,7 @@ const SignIn = async (req, res) => {
 
         const options = {
             httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24 * 30,
             // secure: true,
             // sameSite: "None", // Allows cross-site cookies
             // domain: ".hand-crafted.vercel.app", // Set the specific domain
