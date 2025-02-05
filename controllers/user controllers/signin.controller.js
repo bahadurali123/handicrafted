@@ -38,7 +38,7 @@ const SignIn = async (req, res) => {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 30,
             secure: true,
-            // sameSite: "None", // Allows cross-site cookies
+            sameSite: "None", // Allows cross-site cookies
             domain: `${Configuration.FrontendDomain}`, // Set the specific domain
             // path: "/", // Ensure it's accessible across the site
         };
