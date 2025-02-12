@@ -11,7 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser()); //its handle the cookies
 app.use(cors({
-    origin: [Configuration.FrontendUrl, Configuration.FrontendDomain, 'https://handcrafted-backend.vercel.app'],
+    origin: [Configuration.FrontendUrl],
     credentials: true, // Allow credentials (cookies) to be sent
 }));
 

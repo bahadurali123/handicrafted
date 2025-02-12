@@ -37,12 +37,9 @@ const SignIn = async (req, res) => {
         const options = {
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24 * 30,
-            secure: true, 
-            sameSite: "Lax",
-            // sameSite: "Strict",
-            // sameSite: "None", // Allows cross-site cookies
-            domain: `${Configuration.FrontendDomain}`, // Set the specific domain
-            // path: "/", // Ensure it's accessible across the site
+            secure: true,
+            sameSite: "None", // Allows cross-site cookies
+            domain: `${Configuration.CookieDomain}`, // Set the specific domain
         };
 
         const { password, verificationCode, ...responseData } = existingUser.toObject();
