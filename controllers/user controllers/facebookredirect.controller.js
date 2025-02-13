@@ -5,9 +5,7 @@ const facebookRedirect = async (_, res) => {
         console.log("Redirect on facebook!");
 
         const redirectUri = encodeURIComponent(`${Configuration.facebookredirecturl}`);
-        console.log("Redirect on facebook! 1", redirectUri);
         const facebookAuthUrl = `https://www.facebook.com/v16.0/dialog/oauth?client_id=${Configuration.facebookappId}&redirect_uri=${redirectUri}&scope=email,public_profile`;
-        console.log("Redirect on facebook! 2", facebookAuthUrl);
 
         res.status(201).json({ message: "Redirect ap Facebook!", redirect: facebookAuthUrl });
     } catch (error) {

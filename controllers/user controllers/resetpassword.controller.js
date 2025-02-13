@@ -5,6 +5,7 @@ import User from "../../models/user.model.js";
 
 const resetPassword = async (req, res) => {
     try {
+        console.log("Reset Pass!");
         const { email, password, confpassword } = req.body;
         const user = req.user;
 

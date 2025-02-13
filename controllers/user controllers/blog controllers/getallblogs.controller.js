@@ -2,11 +2,7 @@ import Blog from "../../../models/blog.model.js";
 
 const GetAllBlogs = async (__, res) => {
     try {
-        console.log("Blogs Request");
-        // const bahadur = 5;
-        // if (bahadur) {
-        //     return res.status(400).json({ message: "All fields are required" })
-        // }
+        console.log("Blogs Request!");
 
         const Blogs = await Blog.find();
         if (!Blogs) {

@@ -26,14 +26,12 @@ const AddMessage = async (req, res) => {
         const MessageObg = new Message({
             userId: user._id,
             name,
-            // phone: '+123456789',
             phone,
             email,
             message,
         });
 
         const newMessage = await MessageObg.save();
-        console.log("Message", newMessage);
 
 
         res.status(201)

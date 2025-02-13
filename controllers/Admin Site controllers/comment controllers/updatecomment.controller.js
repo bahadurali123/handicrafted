@@ -3,13 +3,12 @@ import { AdminValidator, UserValidator } from "../../../validation/inputs.valida
 
 const UpdateComment = async (req, res) => {
     try {
-        console.log("Comment");
+        console.log("Update Comment");
         const { status } = req.body;
         const commentId = req.params.id;
         const user = req.user;
         const assignRole = user.role;
         const Status = user.status;
-        // console.log("Comment 1", status, req.body, commentId);
 
         const validName_A = new AdminValidator({ assignRole, Status });
         const validName = new UserValidator({ Item: status, Id: commentId });
@@ -38,7 +37,6 @@ const UpdateComment = async (req, res) => {
             },
             { new: true }
         );
-        // console.log("Update comment response: ", updatedComment);
 
         res.status(201)
             .json({ message: "Successfull Update Comment!", data: updatedComment, redirect: "redirectURL" });

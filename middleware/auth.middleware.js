@@ -4,15 +4,14 @@ import User from '../models/user.model.js';
 
 const UserAuth = async (req, res, next) => {
     try {
+        console.log("User Auth!");
         let user;
-        console.log("User Auth 4:", req.cookies);
         const token = req.cookies.handcrafted;
 
         if (!token) {
             return res.status(401).json({ message: 'You must be Login' });
         }
         const payload = await jwt.verify(token, Configuration.accessTokenSecret);
-        // console.log("User Payload is:", payload);
         if (!payload) {
             return res.status(400).json({ message: "something wrong with the payload." })
         }
@@ -35,10 +34,11 @@ const UserAuth = async (req, res, next) => {
 
 const UserFlexibleAuth = async (req, res, next) => {
     try {
+        console.log("User Auth Check!");
         let user;
         let payload;
         const token = req.cookies.handcrafted;
-        console.log("Token flex", token);
+
         if (!token) return next();
         const decoded = jwt.decode(token);
         const currentTime = Math.floor(Date.now() / 1000);
@@ -48,7 +48,6 @@ const UserFlexibleAuth = async (req, res, next) => {
             return next();
         }
 
-        // console.log("payload 3", payload);
         if (!payload) {
             return res.status(400).json({ message: "something wrong with the payload." })
         }

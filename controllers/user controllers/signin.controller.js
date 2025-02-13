@@ -6,8 +6,7 @@ import { Configuration } from "../../config/env.config.js";
 
 const SignIn = async (req, res) => {
     try {
-        console.log("SignIn");
-        // let { email, pass: password } = req.body
+        console.log("SignIn!");
         const email = req.body.email;
         const pass = req.body.password;
 
@@ -24,10 +23,9 @@ const SignIn = async (req, res) => {
         if (!existingUser) {
             return res.status(401).json({ message: "You are unauthorized" });
         }
-        console.log("Existing User: ", existingUser);
 
         const checkPassword = await bcrypt.compare(pass, existingUser.password);
-        console.log("Check password: ", checkPassword);
+
         if (!checkPassword) {
             return res.status(401).json({ message: "You are unauthorized" });
         }

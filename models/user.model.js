@@ -73,10 +73,8 @@ const userSchema = new mongoose.Schema({
 
 
 userSchema.pre("save", async function (next) {
-    console.log("Model")
     if (!this.isModified("password")) return next();
     const hashPassword = await bcrypt.hash(this.password, 10);
-    console.log("Hashd password: ", hashPassword);
     this.password = hashPassword
     next();
 });
@@ -117,7 +115,7 @@ userSchema.methods.refreshToken = async function () {
         expiresIn: Configuration.refreshTokenExpiry
     };
     const userToken = jwt.sign(payload, secret, expiry);
-    
+
     return userToken;
 };
 

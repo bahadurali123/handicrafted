@@ -4,7 +4,6 @@ const googleRedirect = async (_, res) => {
   try {
     console.log("Redirect on google!");
     const authUrl = getGoogleAuthUrl();
-    // console.log("Redirect", authUrl);
 
     res.status(201).json({ message: "Redirect ap Google!", redirect: authUrl });
   } catch (error) {

@@ -6,7 +6,6 @@ const AddShipping = async (req, res) => {
     try {
         console.log("Add Shipping Address!");
         const user = req.user
-        console.log("Add Shippiing", req.body);
 
         const { street, building, state, city, postalCode, countryCode } = req.body
 
@@ -18,7 +17,7 @@ const AddShipping = async (req, res) => {
 
         const addressIs = validName.validateAddress();
         const countryIs = validName.validateCountryCode();
-        // console.log("Shipping: ", addressIs, countryIs, user._id);
+
         let newshipping;
 
         if (!addressIs || !countryIs) {
@@ -26,7 +25,6 @@ const AddShipping = async (req, res) => {
         }
 
         if (!user.shippingAddresses[0]) {
-            console.log("Null");
             // add Shipping address with default true
             const ShipIs = new ShippingAddress({
                 userId: user._id,
@@ -43,7 +41,6 @@ const AddShipping = async (req, res) => {
         }
 
         if (user.shippingAddresses[0]) {
-            console.log("Not Null");
             // add Shipping address with default false
             const ShipIs = new ShippingAddress({
                 userId: user._id,

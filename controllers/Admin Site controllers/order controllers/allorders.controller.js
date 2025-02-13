@@ -8,7 +8,6 @@ const allOrders = async (req, res) => {
         const user = req.user;
         const assignRole = user.role;
         const Status = user.status;
-        // console.log("1", user._id, user);
 
         const validName_A = new AdminValidator({ assignRole, Status });
 

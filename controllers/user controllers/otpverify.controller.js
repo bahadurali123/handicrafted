@@ -5,9 +5,7 @@ const veirfyOTP = async (req, res) => {
     try {
         console.log("Verify!");
         let { verificationCode } = req.body;
-        console.log("Verify! 1", req.body, req.user);
         const email = req.user.email;
-        console.log("verifyOTP: ", email, verificationCode);
         verificationCode = parseInt(verificationCode);
 
         const validName = new UserValidator({ email, verificationCode });

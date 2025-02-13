@@ -28,7 +28,7 @@ const stripeCheckout = async (req, res) => {
         const userData = {
             name, email, phone, street, building, state, city, postalCode, countryCode
         }
-        console.log("User Data", userData);
+
         const ShippingData = new OrderShipping({
             customerName: name,
             phoneNumber: phone,
@@ -47,15 +47,13 @@ const stripeCheckout = async (req, res) => {
             deliveryDate: deliveryDatestamp,
         });
         const newShipping = await ShippingData.save();
-        console.log("New Shipping of data: ", newShipping);
 
         const cartData = {
             totalprice: totalPrice + totalShippings,
         }
-        console.log("1.3", cartData);
 
         const session = await Checkout(cartData);
-        console.log("2", session);
+
         const { id, amount_total, currency: currencyCode, payment_method_types, payment_status } = session;
         const obj = {
             serviceType,
@@ -71,7 +69,8 @@ const stripeCheckout = async (req, res) => {
             payment_method_types,
             payment_status
         }
-        console.log("Data for order:> ", obj);
+
+
         const OrderData = new Order({
             userId: user._id,
             gatewayOrderId: id,
@@ -82,9 +81,8 @@ const stripeCheckout = async (req, res) => {
             totalAmount: amount_total / 100,
             paymentGateway: 'stripe'
         });
-        console.log("Data for Order: ", OrderData);
+
         const newOrder = await OrderData.save();
-        console.log("Order Response: ", newOrder);
 
         res.status(200).json({ message: "Successfull Checkout Order!", data: session, id: session.id });
     } catch (error) {

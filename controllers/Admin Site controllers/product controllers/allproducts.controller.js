@@ -3,8 +3,9 @@ import Product from "../../../models/product.model.js";
 const GetProducts = async (__, res) => {
     try {
         console.log("All Products");
+
         const Products = await Product.find();
-        // console.log("Products: ", Products);
+
         if (!Products) {
             return res.status(404).json({ message: "Not Found." })
         }

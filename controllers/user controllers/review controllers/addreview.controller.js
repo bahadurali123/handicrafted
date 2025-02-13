@@ -13,8 +13,6 @@ const AddReview = async (req, res) => {
         const assignRole = user.role;
         const Status = user.status;
 
-        // console.log("Review 1:", name, email, review, reviewDescription, file);
-
         const validName_A = new AdminValidator({ assignRole, Status });
         const validName = new UserValidator({ Id: orderId, name, email, review, reviewDescription });
 
@@ -26,21 +24,17 @@ const AddReview = async (req, res) => {
         const reviewIs = validName.validateReview();
         const descriptionIs = validName.validateReviewDescription();
 
-        // console.log("Review 2:", nameIs, emailIs, reviewIs, descriptionIs, file);
-
         if (!nameIs || !emailIs || !reviewIs || !descriptionIs || !validOrderIs || !(file !== '')) {
             return res.status(400).json({ message: "All fields are required" });
         }
         if (!userStatusIs || !userRoleIs) {
             return res.status(400).json({ message: "Your account status and role is unacceptable." })
         }
-        // console.log("5");
         if (Status !== 'Active') {
             return res.status(400).json({ message: "With this role, you cannot make this change." })
         }
 
         const reviewOrder = await Order.findOne({ _id: orderId });
-        // console.log("Review 3:", reviewOrder);
 
         if (!reviewOrder) {
             return res.status(404).json({ message: "Order not found" });
@@ -48,7 +42,6 @@ const AddReview = async (req, res) => {
 
         const cloudinaryResponse = await uploadOnCloudinary(file);
         const image = cloudinaryResponse.secure_url;
-        // console.log("Review 4:", image);
 
         // Heandel upload image on cloudinary
         const ReviewIs = new Review({
@@ -60,9 +53,8 @@ const AddReview = async (req, res) => {
             reviewDescription,
             image
         });
-        // console.log("Review 5:", ReviewIs);
+
         const newReview = await ReviewIs.save();
-        // console.log("Review 6:", newReview);
 
 
         res.status(201)

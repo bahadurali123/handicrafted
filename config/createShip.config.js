@@ -13,14 +13,10 @@ const CreateShip = async (reqdata) => {
             userId: user._id,
             isPrimary: true
         });
-    console.log("1", shippingAdd);
     const productIds = cartProducts.map(item => item._id);
-    console.log("Products Ids array: ", productIds);
     const productsList = await Product.find({ _id: { $in: productIds } });
-    console.log("Products List: ", productsList);
     const fedexoauth = await fedexOAuth(Configuration.fedexKey, Configuration.fedexSecret);
 
-    console.log("Create shipp 2: ");
     const HandcraftedUSStore = {
         Street: "123 Main Street",
         Building: "Unit 5B",
@@ -29,7 +25,6 @@ const CreateShip = async (reqdata) => {
         PostalCode: 90012,
         CountryCode: "US"
     }
-    console.log("Create shipp 3: ");
 
     const domesticBody = {
         accountNumber: {
@@ -234,7 +229,7 @@ const CreateShip = async (reqdata) => {
     } else {
         data = await createShipment(fedexoauth, internationalBody);
     }
-    console.log("Shipment Is: ", data);
+
     const serviceType = data.output.transactionShipments[0].serviceType;
     const { currency, deliveryDatestamp, trackingNumber } = data.output.transactionShipments[0].pieceResponses[0];
     const shipmentDocument = data.output.transactionShipments[0]?.shipmentDocuments?.[0]?.url;

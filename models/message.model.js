@@ -29,14 +29,6 @@ const ContactMessageSchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
-        // CreatedAt: {
-        //   type: Date,
-        //   default: Date.now,
-        // },
-        // UpdatedAt: {
-        //   type: Date,
-        //   default: Date.now,
-        // },
     },
     {
         timestamps: true, // Automatically adds createdAt and updatedAt fields

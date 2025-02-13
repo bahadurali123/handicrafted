@@ -8,7 +8,6 @@ const UpdateProfile = async (req, res) => {
         const { name, email, phone } = req.body
         const file = req.file.buffer;
         const user = req.user;
-        // console.log("profile 1: ", req.body, file);
 
         if (!(user.status === 'Active')) {
             return res.status(400).json({ message: "You are blocked, you cannot make this change." });
@@ -25,7 +24,7 @@ const UpdateProfile = async (req, res) => {
         }
 
         const existingUser = await User.findOne({ $and: [{ email: user.email }, { _id: user._id }] });
-        // console.log("existing user: ", existingUser);
+
         if (!existingUser) {
             return res.status(401).json({ message: "You are unauthorized" });
         }
@@ -72,8 +71,6 @@ const UpdateProfile = async (req, res) => {
                 new: true
             }
         ).select("-password");
-
-        console.log("Updated User: ", updatedUser);
 
         res.status(201)
             .json({ message: "Successfull Updata User!", data: updatedUser, redirect: "redirectURL" });

@@ -15,7 +15,6 @@ const Checkout = async (cart) => {
                     product_data: {
                         name: 'Handcrafted Product',
                     },
-                    // unit_amount: 2000, // $20.00
                     unit_amount: totalprice * 100, // $20.00
                 },
                 quantity: 1,

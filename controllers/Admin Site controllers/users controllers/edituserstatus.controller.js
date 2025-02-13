@@ -5,11 +5,8 @@ const EditUserStatus = async (req, res) => {
     try {
         console.log("Edit User Status");
         const { email, status } = req.body;
-        console.log("Edit User Status 1", email, status);
         const userId = req.params.id;
-        console.log("Edit User Status 2", userId);
         const user = req.user;
-        console.log("Edit User Status 3", user);
         const assignRole = user.role;
         const Status = user.status;
 
@@ -20,7 +17,6 @@ const EditUserStatus = async (req, res) => {
         const userRoleIs = validName_A.validateRoleAssignment();
         const userIdIs = validName_A.validateId();
         const emailIs = validName.validateEmail();
-        console.log("Edit User Status 4", userStatusIs, userRoleIs, userIdIs, emailIs);
 
         if (!userIdIs || !emailIs || !userStatusIs) {
             return res.status(400).json({ message: "All fields are required" })
@@ -47,8 +43,6 @@ const EditUserStatus = async (req, res) => {
         if (!UpdatedUser) {
             return res.status(404).json({ message: "Not Found." })
         }
-        console.log("Edit User Status 5", UpdatedUser);
-
 
         res.status(201)
             .json({ message: "Successfull Get All Users!", data: UpdatedUser, redirect: "redirectURL" });

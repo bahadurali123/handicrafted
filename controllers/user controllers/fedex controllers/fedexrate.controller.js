@@ -153,7 +153,6 @@ const findFedexRate = async (req, res) => {
             data = await findRate(fedexoauth, internationalShipmentDetails);
         }
 
-        console.log("Rate Is: ", data);
         res.status(200).json({ message: "Successfull tracking!", data });
     } catch (error) {
         res.status(500).json("fail to track!");

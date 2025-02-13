@@ -3,9 +3,9 @@ import { AdminValidator, UserValidator } from "../../../validation/inputs.valida
 
 const GetBlog = async (req, res) => {
     try {
-        console.log("Blog Request")
+        console.log("Blog Request!");
+
         const slug = req.params.slug;
-        console.log("1", slug)
         const user = req.user;
         const assignRole = user.role;
         const Status = user.status;
@@ -25,7 +25,7 @@ const GetBlog = async (req, res) => {
         if (!slug) {
             return res.status(400).json({ message: "Argument is required." });
         }
-        
+
         const BlogIs = await Blog.findOne({ slug });
         if (!BlogIs) {
             return res.status(400).json({ message: "Not found." });

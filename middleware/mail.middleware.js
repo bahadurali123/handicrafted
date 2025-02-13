@@ -9,8 +9,6 @@ const transporter = nodemailer.createTransport({
     auth: {
         user: Configuration.emailIs,
         pass: Configuration.emailPasswordIs
-        // user: 'your-email@gmail.com',
-        // pass: 'your-password'
     }
 })
 const sendEmail = async (to, subject, text, html) => {
@@ -22,7 +20,6 @@ const sendEmail = async (to, subject, text, html) => {
             text: text,
             html: html
         });
-        // console.log("Mail info: ", info);
         return info.messageId;
     } catch (error) {
         throw error;

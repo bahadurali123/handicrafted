@@ -8,7 +8,6 @@ const base = Configuration.paypalBaseUrl;
 
 // ................................
 const createOrder = async (cart) => {
-    // const { totalprice, address_line_1, address_line_2, admin_area_2, admin_area_1, postal, country, } = cart;
     const { totalprice } = cart;
 
     const accessToken = await generatePaypalAccessToken();
@@ -25,14 +24,6 @@ const createOrder = async (cart) => {
                     name: {
                         full_name: "John Doe"
                     },
-                    // address: {
-                    //     address_line_1,
-                    //     address_line_2,
-                    //     admin_area_2,
-                    //     admin_area_1,
-                    //     postal_code: postal,
-                    //     country_code: country,
-                    // }
                 }
             }
         ]
@@ -88,7 +79,6 @@ const generatePaypalAccessToken = async () => {
             },
         });
         const oauthResponse = await response.json();
-        // console.log("Successfully generate Access Token:");
 
         return oauthResponse.access_token;
     } catch (error) {
@@ -104,7 +94,6 @@ const generatePaypalAccessToken = async () => {
 const handleResponse = async (response) => {
     try {
         const jsonResponse = await response.json();
-        // console.log("Handel response: ", jsonResponse);
         return {
             jsonResponse,
             StatusCode: response.status,

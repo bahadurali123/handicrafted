@@ -6,7 +6,7 @@ import generateTokens from "../../middleware/generateToken.middleware.js";
 import { Configuration } from "../../config/env.config.js";
 
 const SignUp = async (req, res) => {
-  console.log("SignUp", req.body);
+  console.log("SignUp!");
   try {
     const { name, email, password: ispass, confpassword, phone } = req.body;
 
@@ -17,7 +17,6 @@ const SignUp = async (req, res) => {
     const passIs = validName.validatePassword();
     const cpassIs = validName.validateConfPassword();
     const phoneIs = validName.validatePhoneNumber();
-    console.log("SignUp 1", nameIs, emailIs, passIs, cpassIs, phoneIs);
 
     if (!nameIs || !emailIs || !passIs || !phoneIs || !cpassIs) {
       return res.status(400).json({ message: "All fields are required" })
@@ -51,13 +50,13 @@ const SignUp = async (req, res) => {
 
     const options = {
       httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 24 * 30,
       secure: true,
-      sameSite: "None", // Allows cross-site cookies
-      domain: `${Configuration.FrontendUrl}`, // Set the specific domain
+      sameSite: "None",
+      domain: `${Configuration.CookieDomain}`,
     };
 
     const { password, verificationCode, token, ...responseData } = savedUser.toObject();
-    console.log("SignUp 3", savedUser, options, accessToken);
     res.status(201)
       .cookie('handcrafted', accessToken, options)
       .json({ message: "Successfull SignUp!", data: responseData, redirect: "redirectURL" });

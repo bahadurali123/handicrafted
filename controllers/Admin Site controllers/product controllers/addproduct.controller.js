@@ -7,8 +7,6 @@ const AddProduct = async (req, res) => {
     try {
         console.log("Product");
         const { name, description, categoryId, price, stockQuantity, featured, colors, weight, length, width, height } = req.body;
-        // console.log("1", req.body);
-        // console.log("2", req.files);
         const images = req.files.map(file => file.buffer);
         const user = req.user;
         const assignRole = user.role;
@@ -23,7 +21,6 @@ const AddProduct = async (req, res) => {
         const userStatusIs = validName_A.validateUserStatus();
         const userRoleIs = validName_A.validateRoleAssignment();
 
-        // console.log("6", dataIs, userStatusIs, userRoleIs);
         if (!dataIs || !images[0]) {
             return res.status(400).json({ message: "All fields are required" })
         }

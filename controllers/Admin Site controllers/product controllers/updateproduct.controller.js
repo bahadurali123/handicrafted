@@ -9,7 +9,6 @@ const UpdateProduct = async (req, res) => {
         const { name, description, categoryId, price, stockQuantity, featured, colors, weight, length, width, height } = req.body;
         const productId = req.params.id;
         const files = req.files.map(file => file.buffer);
-        console.log("Product Update 1", files, productId, req.body);
         const user = req.user;
         const assignRole = user.role;
         const Status = user.status;
@@ -41,24 +40,11 @@ const UpdateProduct = async (req, res) => {
 
         // // Update multiple files on cloudinary
         const existingProduct = await Product.findOne({ _id: productId });
-        console.log("Existing images: ", existingProduct.images, [...existingProduct.images]);
-
-        // let images;
-        // if (!files[0]) {
-        //     images = existingProduct.images;
-        // } else {
-        //     const prevFileId = await findMultiFile(existingProduct.images);
-        //     images = await updateMultiCloudinaryFiles(prevFileId, files);
-        //     // We don't need to add images to the database because we don't update the URLs.
-        // }
 
         // Upload multiple files on cloudinary
         const cloudinaryResponse = await multiUploadOnCloudinary(files);
         const cloudinaryimages = cloudinaryResponse.map(item => item.secure_url);
-        console.log("Cloudinary Upload: ", cloudinaryimages);
         const images = [...existingProduct.images, ...cloudinaryimages];
-        console.log("Final images: ", images);
-        console.log("befour product updata: ");
 
         const UpdatedProduct = await Product.findOneAndUpdate(
             {
@@ -80,8 +66,6 @@ const UpdateProduct = async (req, res) => {
             },
             { new: true }
         )
-        console.log("after product updata: ");
-        console.log("Updated Product", UpdatedProduct);
 
         res.status(201)
             .json({ message: "Successfull Update Product!", data: UpdatedProduct, redirect: "redirectURL" });

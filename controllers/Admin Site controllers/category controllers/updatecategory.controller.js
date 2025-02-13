@@ -8,7 +8,6 @@ const UpdateCategory = async (req, res) => {
         const { name, parentId } = req.body;
         const _id = req.params.id;
         const file = req.file?.buffer;
-        console.log("Update Category 1", name, parentId, _id, file);
         const user = req.user;
         const assignRole = user.role;
         const Status = user.status;
@@ -19,7 +18,6 @@ const UpdateCategory = async (req, res) => {
         const nameIs = validName.validateName();
         const userStatusIs = validName_A.validateUserStatus();
         const userRoleIs = validName_A.validateRoleAssignment();
-        console.log("Update Category 2", nameIs, userStatusIs, userRoleIs);
 
         if (!nameIs, !_id) {
             return res.status(400).json({ message: "All fields are required" })
@@ -37,22 +35,17 @@ const UpdateCategory = async (req, res) => {
         } else {
             parentCategory = await Category.findOne({ _id: parentId });
         }
-        console.log("Update Category 3", parentCategory);
 
         const existingCategory = await Category.findOne({ _id });
-        console.log("Update Category 4", existingCategory);
+
         let image;
-        console.log("Update Category 4.1");
+
         if (!file) {
-            console.log("Update Category 4.2");
             image = existingCategory?.image;
         } else {
-            console.log("Update Category 4.3");
             const prevFileId = await findFile(existingCategory?.image)
-            console.log("Update Category 4.4");
             image = await updateCloudinaryFile(prevFileId, file);
         }
-        console.log("Update Category 5", image);
 
         const UpdatedCategory = await Category.findOneAndUpdate(
             { _id },
@@ -62,7 +55,6 @@ const UpdateCategory = async (req, res) => {
                 image
             },
             { new: true });
-        console.log("Update Category 6", UpdatedCategory);
 
         res.status(201)
             .json({ message: "Successfull Update Category!", data: UpdatedCategory, redirect: "redirectURL" });

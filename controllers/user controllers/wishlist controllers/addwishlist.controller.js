@@ -58,7 +58,6 @@ const AddWishlist = async (req, res) => {
                 { new: true }
             ).select("-password");
         }
-        console.log("Updated User: ", updatedUser);
 
         res.status(201)
             .json({ message: "Successfull Update Wishlist!", data: updatedUser, redirect: "redirectURL" });

@@ -68,7 +68,6 @@ function findFile(url) {
 const updateCloudinaryFile = async (publicId, fileBuffer) => {
     return new Promise((resolve, reject) => {
         const options = {
-            // folder: 'handcrafted',
             folder: Configuration.cloudinaryFolder,
             public_id: publicId, // Public ID of the existing file to update
             overwrite: true,     // Allow overwriting the existing file
@@ -125,8 +124,6 @@ const deletevideo = async (publicId) => {
         console.error('Error deleting file:', error);
     }
 };
-
-
 
 // ................................
 

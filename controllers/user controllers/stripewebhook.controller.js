@@ -7,7 +7,7 @@ const stripeWebhook = async (request, response) => {
     console.log("Stripe Webhook!");
 
     let event = request.body;
-    console.log("1", event);
+
     const orderdata = {
         id: event.id,
         amount: event.data?.object?.amount,
@@ -16,32 +16,24 @@ const stripeWebhook = async (request, response) => {
         payMethodDetails: event.data?.object?.payment_method_details?.type,
         payMethodTypes: event.data?.object?.payment_method_types,
     }
-    console.log("2", orderdata);
+
     //   const endpointSecret = process.env.WEBHOOK_SECRET;
     const endpointSecret = Configuration.stripewebhooksecretkey;
-    // console.log(`1.1: Thats a Webhook Request! id is: ${event.id} and Object is: ${event.data.object.object}`);
     // Only verify the event if you have an endpoint secret defined.
     if (endpointSecret) {
-        // console.log('2: Signatures in Webhook Request!');
         try {
-            // console.log('2.1: in try!', event.id);
             const payload = {
                 id: event.id,
                 object: event.data.object.object,
             };
             const payloadString = JSON.stringify(payload, null, 2);
-            // console.log('3!', payloadString);
             const secret = endpointSecret;
             const header = stripe.webhooks.generateTestHeaderString({
                 payload: payloadString,
                 secret,
             });
-            // console.log('4!', header);
             // Get the signature sent by Stripe
             const constructeventis = stripe.webhooks.constructEvent(payloadString, header, secret);
-            console.log('Event is this ', constructeventis);
-            // Do something with mocked signed event
-            // expect(constructeventis.id).to.equal(payload.id);
         } catch (err) {
             console.log(`⚠️  Webhook signature verification failed.`, err.message);
             return response.sendStatus(400);
@@ -57,7 +49,6 @@ const stripeWebhook = async (request, response) => {
         },
         { new: true }
     );
-    console.log("order Data: ", OrderData);
 
     // Handle necessary events
     switch (event.type) {
@@ -94,7 +85,7 @@ const stripeWebhook = async (request, response) => {
     }
 
 
-    // // ...........
+
     // // Handle the event type
     // switch (event.type) {
     //     // **Payment Intent Events**

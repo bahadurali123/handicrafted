@@ -3,7 +3,7 @@ import { AdminValidator } from "../../../validation/inputs.validation.js";
 
 const DeleteCategory = async (req, res) => {
     try {
-        // console.log("Category");
+        console.log("Delete Category!");
         const _id = req.params.id;
         const user = req.user;
         const assignRole = user.role;

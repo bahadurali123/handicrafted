@@ -34,7 +34,6 @@ const productSchema = new mongoose.Schema({
   },
   colors: {
     type: [String],
-    // enum: ['red', 'blue', 'green', 'white', 'black', 'yellow'],
     default: []
   },
   weight: {

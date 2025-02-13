@@ -62,6 +62,7 @@ const orderShippingTracking = async (req, res) => {
             { key: "OX", value: "Shipment information sent to USPS" },
             { key: "PD", value: "Pickup Delay" }
         ];
+
         const statusMapping = {
             Pending: ['OC', 'PU', 'PM'], // Order Created, Picked Up, In Progress
             Shipped: ['IT', 'EP', 'AR', 'SP', 'OF', 'IX'], // In Transit, Enroute to Pickup, Arrived, etc.
@@ -124,8 +125,6 @@ const orderShippingTracking = async (req, res) => {
                     status: simplifiedStatus,
                 }, { new: true });
         };
-
-        console.log("Data Is: ", trackingData);
 
         res.status(200).json({ message: "Successfull Order Track!", data: trackingData });
     } catch (error) {

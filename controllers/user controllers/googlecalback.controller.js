@@ -17,7 +17,7 @@ const googleCalback = async (req, res) => {
 
         // Exchanged authorization code for tokens.
         const { tokens } = await client.getToken(code);
-        // console.log("Tokens", tokens);
+
         client.setCredentials(tokens);
 
         // Verify theID token verified by Google.
@@ -28,7 +28,6 @@ const googleCalback = async (req, res) => {
 
         // Extract user information from the payload of the ID token.
         const payload = ticket.getPayload();
-        // console.log("Payload:", payload);
 
         const googleId = payload['sub'];
         const email = payload['email'];
@@ -38,15 +37,15 @@ const googleCalback = async (req, res) => {
         const userExist = await User.findOne({ $or: [{ email: email }, { googleId }] })
             .select("_id email googleId");
 
-        console.log("User: ", userExist);
         if (userExist) {
             const { accessToken } = await generateTokens(userExist._id);
 
             const options = {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None", // Allows cross-site cookies
-                domain: `${Configuration.FrontendUrl}`, // Set the specific domain
+                sameSite: "None",
+                domain: `${Configuration.CookieDomain}`,
+                maxAge: 1000 * 60 * 60 * 24 * 30,
             };
 
             res.status(200)
@@ -63,13 +62,13 @@ const googleCalback = async (req, res) => {
 
             const user = await newUser.save();
             const { accessToken } = await generateTokens(user._id);
-            // console.log("Access token", accessToken);
 
             const options = {
                 httpOnly: true,
                 secure: true,
-                sameSite: "None", // Allows cross-site cookies
-                domain: `${Configuration.FrontendUrl}`, // Set the specific domain
+                sameSite: "None",
+                domain: `${Configuration.CookieDomain}`,
+                maxAge: 1000 * 60 * 60 * 24 * 30,
             };
 
             res.status(200)
