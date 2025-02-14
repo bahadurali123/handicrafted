@@ -13,6 +13,7 @@ app.use(cookieParser()); //its handle the cookies
 app.use(cors({
     origin: [Configuration.FrontendUrl],
     credentials: true, // Allow credentials (cookies) to be sent
+    exposedHeaders: ['set-cookie'],
 }));
 
 app.use('/', UserRouter, AdminRouter);
