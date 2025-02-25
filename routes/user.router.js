@@ -1,11 +1,12 @@
 import express from "express";
 import uploadOnMulter from "../middleware/multer.middleware.js";
-import { SignIn, SignUp, googleRedirect, googleCalback, veirfyOTP, regenreteOTP, resetPassword, UpdateProfile, AddShipping, AddComment, AddLike, AddWishlist, GetBlog, GetAllBlogs, CheckOauth, UserShippings, AllLikes, AllReviews, AllComments, findFedexRate, createPaypalOrder, capturePaypalOrder, stripeCheckout, stripeWebhook, AddMessage, userOrders, orderShippingTracking, AddReview, DeleteShipping, EditShippingAddressStatus, UpdateShipping, facebookRedirect, facebookCalback, SignOut } from "../controllers/index.controller.js"
+import { SignIn, SignUp, googleRedirect, googleCalback, veirfyOTP, regenreteOTP, resetPassword, UpdateProfile, AddShipping, AddComment, AddLike, AddWishlist, GetBlog, GetAllBlogs, CheckOauth, UserShippings, AllLikes, AllReviews, AllComments, findFedexRate, createPaypalOrder, capturePaypalOrder, stripeCheckout, stripeWebhook, AddMessage, userOrders, orderShippingTracking, AddReview, DeleteShipping, EditShippingAddressStatus, UpdateShipping, facebookRedirect, facebookCalback, SignOut, Homeroute } from "../controllers/index.controller.js"
 import { UserAuth, UserFlexibleAuth } from "../middleware/auth.middleware.js";
 
 const UserRouter = express.Router();
 
-// Real routes
+UserRouter.get('/', Homeroute);
+
 UserRouter.get('/fedex/rates/:productId', UserFlexibleAuth, findFedexRate);
 // UserRouter.get('/fedex/track/:id', UserAuth, orderShippingTracking);
 UserRouter.get('/fedex/track/:id', UserFlexibleAuth, orderShippingTracking);

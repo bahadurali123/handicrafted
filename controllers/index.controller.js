@@ -1,3 +1,4 @@
+import Homeroute from "./user controllers/home.controller.js"
 import SignUp from "./user controllers/signup.controller.js"
 import SignIn from "./user controllers/signin.controller.js"
 import CheckOauth from "./user controllers/checkoauth.controller.js"
@@ -61,6 +62,7 @@ import EditUserStatus from "./Admin Site controllers/users controllers/editusers
 import allOrders from "./Admin Site controllers/order controllers/allorders.controller.js"
 
 export {
+    Homeroute,
     SignUp, // User
     SignIn,
     CheckOauth,
